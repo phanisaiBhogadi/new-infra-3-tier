@@ -18,12 +18,12 @@ resource "aws_launch_template" "swiggy-web-template" {
   instance_type = "t2.micro"
   key_name      = "devopsbyraham"
   network_interfaces {
-    associate_public_ip_address = false
+    associate_public_ip_address = true
     security_groups             = [aws_security_group.swiggy-ec2-asg-sg.id]
   }
   user_data = base64encode(file("apache.sh"))
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
     ignore_changes  = all
   }
 }
